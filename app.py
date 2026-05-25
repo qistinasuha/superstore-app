@@ -187,30 +187,28 @@ elif page == 'Pie Chart + Bar Chart':
 # ══════════════════════════════════════════════════════════════════════════════
 elif page == 'Map View + Scatter Plot':
     st.title('Map View + Scatter Plot')
-    st.info('Select a country to filter the scatter plot.')
+    st.info('Select a state to filter the scatter plot.')
 
-    countries = sorted(df['Country'].unique().tolist())
-    selected_country = st.selectbox('Select Country', countries)
-    filtered = df[df['Country'] == selected_country]
+    states = sorted(df['State'].unique().tolist())
+    selected_state = st.selectbox('Select State', states)
+    filtered = df[df['State'] == selected_state]
 
-    st.subheader('Sales by Country (Map)')
-    country_sales = df.groupby('Country')['Sales'].sum().reset_index()
-    st.map(df[['Latitude', 'Longitude']].dropna()) if 'Latitude' in df.columns else st.warning('No lat/lon in dataset — showing top countries by sales instead.')
-
-    country_bar = alt.Chart(country_sales.sort_values('Sales', ascending=False).head(20)).mark_bar(color='#378ADD').encode(
+    st.subheader('Top 20 States by Sales')
+    state_sales = df.groupby('State')['Sales'].sum().reset_index()
+    state_bar = alt.Chart(state_sales.sort_values('Sales', ascending=False).head(20)).mark_bar().encode(
         x=alt.X('Sales:Q'),
-        y=alt.Y('Country:N', sort='-x'),
+        y=alt.Y('State:N', sort='-x'),
         color=alt.condition(
-            alt.datum.Country == selected_country,
+            alt.datum.State == selected_state,
             alt.value('#E8593C'),
             alt.value('#378ADD')
         ),
-        tooltip=['Country', 'Sales']
+        tooltip=['State', 'Sales']
     ).properties(height=400)
-    st.altair_chart(country_bar, use_container_width=True)
+    st.altair_chart(state_bar, use_container_width=True)
 
-    st.subheader(f'Sales vs Quantity — {selected_country}')
-    scatter = alt.Chart(filtered).mark_circle(size=60, opacity=0.6, color='#534AB7').encode(
+    st.subheader(f'Sales vs Quantity — {selected_state}')
+    scatter = alt.Chart(filtered).mark_circle(size=60, opacity=0.6).encode(
         x=alt.X('Sales:Q', title='Sales'),
         y=alt.Y('Quantity:Q', title='Quantity'),
         color=alt.Color('Category:N'),
