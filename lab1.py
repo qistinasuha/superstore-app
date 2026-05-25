@@ -25,18 +25,18 @@ page = st.sidebar.selectbox('Choose a Page', [
     'Map View + Scatter Plot'
 ])
 
-# ══════════════════════════════════════════════════════════════════════════════
+
 # 1. INTRODUCTION
-# ══════════════════════════════════════════════════════════════════════════════
+
 if page == 'Introduction':
     st.title('🛒 Global Superstore Sales Dashboard')
     st.write('Use the sidebar to explore different interactive visualizations.')
     st.dataframe(df.head(10))
     st.write(f"**Total rows:** {len(df):,} | **Columns:** {len(df.columns)}")
 
-# ══════════════════════════════════════════════════════════════════════════════
+
 # 2. BASIC ANALYSIS
-# ══════════════════════════════════════════════════════════════════════════════
+
 elif page == 'Basic Analysis':
     st.title('Basic Analysis')
 
@@ -80,9 +80,9 @@ elif page == 'Basic Analysis':
         ).properties(width=300, height=300)
         st.altair_chart(pie, use_container_width=True)
 
-# ══════════════════════════════════════════════════════════════════════════════
+
 # 3. BAR CHART + SCATTER PLOT
-# ══════════════════════════════════════════════════════════════════════════════
+
 elif page == 'Bar Chart + Scatter Plot':
     st.title('Bar Chart + Scatter Plot')
     st.info('Select a category from the dropdown to filter the scatter plot.')
@@ -117,9 +117,9 @@ elif page == 'Bar Chart + Scatter Plot':
         ).properties(width=300, height=300)
         st.altair_chart(scatter, use_container_width=True)
 
-# ══════════════════════════════════════════════════════════════════════════════
+
 # 4. LINE CHART + HISTOGRAM
-# ══════════════════════════════════════════════════════════════════════════════
+
 elif page == 'Line Chart + Histogram':
     st.title('Line Chart + Histogram')
     st.info('Select a year to filter both charts.')
@@ -150,9 +150,9 @@ elif page == 'Line Chart + Histogram':
         ).properties(width=300, height=300)
         st.altair_chart(hist, use_container_width=True)
 
-# ══════════════════════════════════════════════════════════════════════════════
+
 # 5. PIE CHART + BAR CHART
-# ══════════════════════════════════════════════════════════════════════════════
+
 elif page == 'Pie Chart + Bar Chart':
     st.title('Pie Chart + Bar Chart')
     st.info('Select a category from the dropdown to see sales by country.')
@@ -182,9 +182,9 @@ elif page == 'Pie Chart + Bar Chart':
         ).properties(width=300, height=300)
         st.altair_chart(bar, use_container_width=True)
 
-# ══════════════════════════════════════════════════════════════════════════════
+
 # 6. MAP VIEW + SCATTER PLOT
-# ══════════════════════════════════════════════════════════════════════════════
+
 elif page == 'Map View + Scatter Plot':
     st.title('Map View + Scatter Plot')
     st.info('Select a state to filter the scatter plot.')
