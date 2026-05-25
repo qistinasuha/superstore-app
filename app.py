@@ -5,7 +5,7 @@ import altair as alt
 # ── Load data ──────────────────────────────────────────────────────────────────
 @st.cache_data
 def load_data():
-    df = pd.read_csv('/Users/azman/Downloads/Sample - Superstore.csv', encoding='latin1')
+    df = pd.read_csv('Sample - Superstore.csv', encoding='latin1')
     df.columns = df.columns.str.strip()
     df['Order Date'] = pd.to_datetime(df['Order Date'], dayfirst=True)
     df['Year'] = df['Order Date'].dt.year
