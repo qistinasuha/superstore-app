@@ -7,7 +7,7 @@ import altair as alt
 def load_data():
     df = pd.read_csv('Sample - Superstore.csv', encoding='latin1')
     df.columns = df.columns.str.strip()
-    df['Order Date'] = pd.to_datetime(df['Order Date'], dayfirst=True)
+    df['Order Date'] = pd.to_datetime(df['Order Date'], format='mixed')
     df['Year'] = df['Order Date'].dt.year
     df['YearMonth'] = df['Order Date'].dt.to_period('M').astype(str)
     return df
