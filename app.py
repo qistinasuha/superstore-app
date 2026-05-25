@@ -173,12 +173,12 @@ elif page == 'Pie Chart + Bar Chart':
         st.altair_chart(pie, use_container_width=True)
 
     with col2:
-        st.subheader(f'Sales by Country — {selected_cat}')
-        country_data = filtered.groupby('Country')['Sales'].sum().reset_index().sort_values('Sales', ascending=False).head(10)
-        bar = alt.Chart(country_data).mark_bar(color='#1D9E75').encode(
+        st.subheader(f'Top 10 States by Sales - {selected_cat}')
+        state_data = filtered.groupby('State')['Sales'].sum().reset_index().sort_values('Sales', ascending=False).head(10)
+        bar = alt.Chart(state_data).mark_bar(color='#1D9E75').encode(
             x=alt.X('Sales:Q', title='Total Sales'),
-            y=alt.Y('Country:N', sort='-x', title='Country'),
-            tooltip=['Country', 'Sales']
+            y=alt.Y('State:N', sort='-x'),
+            tooltip=['State', 'Sales']
         ).properties(width=300, height=300)
         st.altair_chart(bar, use_container_width=True)
 
